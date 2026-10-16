@@ -51,3 +51,4 @@ Remove `scroll-behavior: smooth` from `html` in `styles.css` when you do.
 `assets/bg-tc.png` / `techmisai-background.png` are no longer used. They are untouched so
 nothing is lost; delete them when you are happy with the new design.
 "# TechMisai-Landing-Page" 
+"# tech" 
