@@ -11,9 +11,6 @@ import {
   UsersRound,
 } from "lucide-react";
 import { gsap, ScrollTrigger, onAnchorClick } from "../lib/motion.js";
-import aboutBannerArtwork from "../assets/ezgif-189bb1fbe3a59382-jpg/ezgif-frame-001.jpg";
-import aboutIntroArtwork from "../assets/ezgif-189bb1fbe3a59382-jpg/ezgif-frame-120.jpg";
-import aboutCtaArtwork from "../assets/ezgif-189bb1fbe3a59382-jpg/ezgif-frame-300.jpg";
 import { ABOUT_STATISTICS } from "../data/content.js";
 import "./AboutSection.css";
 
