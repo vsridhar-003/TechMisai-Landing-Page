@@ -52,3 +52,4 @@ Remove `scroll-behavior: smooth` from `html` in `styles.css` when you do.
 nothing is lost; delete them when you are happy with the new design.
 "# TechMisai-Landing-Page" 
 "# tech" 
+"# tech-0" 
