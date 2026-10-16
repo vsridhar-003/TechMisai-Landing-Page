@@ -1,0 +1,426 @@
+
+/* =========================================================
+   TECHMISAI — CLIENTS CURVED CAROUSEL
+   Larger Logos | Even Spacing | Responsive Layout
+========================================================= */
+
+.client-curved-gallery {
+  --client-blue: #176bff;
+  --client-pink: #ff4fa3;
+  --card-gap: 18px;
+
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: 100%;
+  height: clamp(330px, 36vw, 410px);
+  margin: clamp(28px, 4vw, 48px) 0 12px;
+  overflow: hidden;
+  perspective: 1100px;
+
+  box-sizing: border-box;
+  border: 1px solid rgba(123, 183, 255, 0.22);
+  border-radius: 28px;
+
+  background:
+    radial-gradient(
+      ellipse at 18% 48%,
+      rgba(75, 166, 255, 0.12),
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 82% 52%,
+      rgba(235, 76, 190, 0.11),
+      transparent 45%
+    ),
+    linear-gradient(
+      115deg,
+      rgba(114, 185, 255, 0.045),
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(238, 92, 185, 0.045)
+    );
+}
+
+/* =========================================================
+   VIEWPORT
+========================================================= */
+
+.client-curved-gallery .client-logo-window {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 7%,
+    #000 93%,
+    transparent
+  );
+
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 7%,
+    #000 93%,
+    transparent
+  );
+}
+
+.client-curved-gallery.is-dragging .client-logo-window {
+  cursor: grabbing;
+}
+
+/* =========================================================
+   TRACK — CONTROLLED BY JAVASCRIPT
+========================================================= */
+
+.client-curved-gallery .client-logo-track {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  flex: 0 0 auto;
+
+  width: max-content;
+  height: 100%;
+  gap: 0;
+
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* =========================================================
+   LOGO GROUP — CONSISTENT SPACING
+========================================================= */
+
+.client-curved-gallery .client-logo-group {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  flex: 0 0 auto;
+
+  width: max-content;
+  height: 100%;
+
+  gap: var(--card-gap);
+  padding: 0 var(--card-gap);
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   CLIENT CARD
+========================================================= */
+
+.client-curved-gallery .client-logo-card {
+  position: relative;
+
+  display: flex;
+  flex: 0 0 230px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 230px;
+  height: 205px;
+  min-width: 0;
+
+  gap: 12px;
+  margin: 0;
+  padding: 18px 14px;
+  box-sizing: border-box;
+
+  border: 1px solid rgba(123, 183, 255, 0.34);
+  border-radius: 20px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.97),
+    rgba(244, 249, 255, 0.9)
+  );
+
+  box-shadow:
+    0 12px 28px rgba(45, 112, 190, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+
+  text-align: center;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.client-curved-gallery .client-logo-card:hover {
+  border-color: rgba(255, 79, 163, 0.5);
+
+  box-shadow:
+    0 16px 34px rgba(45, 112, 190, 0.15),
+    0 0 18px rgba(255, 79, 163, 0.07);
+}
+
+/* =========================================================
+   SUBTLE CURVED PERSPECTIVE
+========================================================= */
+
+.client-curved-gallery .client-logo-card:nth-child(7n + 1),
+.client-curved-gallery .client-logo-card:nth-child(7n + 7) {
+  transform: rotateY(12deg);
+}
+
+.client-curved-gallery .client-logo-card:nth-child(7n + 2),
+.client-curved-gallery .client-logo-card:nth-child(7n + 6) {
+  transform: rotateY(8deg);
+}
+
+.client-curved-gallery .client-logo-card:nth-child(7n + 3),
+.client-curved-gallery .client-logo-card:nth-child(7n + 5) {
+  transform: rotateY(4deg);
+}
+
+.client-curved-gallery .client-logo-card:nth-child(7n + 4) {
+  transform: rotateY(0deg);
+}
+
+/* =========================================================
+   LOGO AREA — INCREASED SIZE
+========================================================= */
+
+.client-curved-gallery .client-logo-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 112px;
+
+  width: 190px;
+  height: 112px;
+  max-width: 100%;
+
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  background: transparent;
+}
+
+/* =========================================================
+   LOGO IMAGE — LARGE AND CLEAR
+========================================================= */
+
+.client-curved-gallery .client-logo-card img {
+  display: block;
+
+  width: 190px;
+  height: 112px;
+  max-width: 100%;
+  max-height: 100%;
+
+  flex: 0 1 auto;
+  margin: 0;
+  padding: 0;
+
+  object-fit: contain;
+  object-position: center;
+
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* =========================================================
+   CLIENT NAME
+========================================================= */
+
+.client-curved-gallery .client-logo-card h3 {
+  width: 100%;
+  margin: 0;
+
+  color: #10265f;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   CLIENT CATEGORY
+========================================================= */
+
+.client-curved-gallery .client-logo-card p {
+  width: 100%;
+  margin: 0;
+
+  color: #6480ac;
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* =========================================================
+   CAROUSEL CONTROLS
+========================================================= */
+
+.client-curved-gallery .client-carousel-controls {
+  position: absolute;
+  z-index: 5;
+  right: 18px;
+  bottom: 10px;
+  left: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  color: #786f85;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  .client-curved-gallery {
+    height: 340px;
+    --card-gap: 14px;
+  }
+
+  .client-curved-gallery .client-logo-card {
+    flex-basis: 205px;
+    width: 205px;
+    height: 190px;
+    padding: 15px 12px;
+  }
+
+  .client-curved-gallery .client-logo-media {
+    width: 170px;
+    height: 95px;
+    flex-basis: 95px;
+  }
+
+  .client-curved-gallery .client-logo-card img {
+    width: 170px;
+    height: 95px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+  .client-curved-gallery {
+    height: 310px;
+    border-radius: 18px;
+    --card-gap: 12px;
+  }
+
+  .client-curved-gallery .client-logo-card {
+    flex-basis: 190px;
+    width: 190px;
+    height: 180px;
+    gap: 10px;
+    padding: 13px 10px;
+  }
+
+  .client-curved-gallery .client-logo-media {
+    width: 160px;
+    height: 82px;
+    flex-basis: 82px;
+  }
+
+  .client-curved-gallery .client-logo-card img {
+    width: 160px;
+    height: 82px;
+  }
+
+  .client-curved-gallery .client-logo-card h3 {
+    font-size: 14px;
+  }
+
+  .client-curved-gallery .client-logo-card p {
+    font-size: 11px;
+  }
+
+  .client-curved-gallery .client-curve-edge {
+    height: 54px;
+  }
+
+  .client-curved-gallery .client-curve-edge-top {
+    top: -28px;
+  }
+
+  .client-curved-gallery .client-curve-edge-bottom {
+    bottom: -28px;
+  }
+
+  .client-curved-gallery .client-carousel-controls {
+    right: 10px;
+    bottom: 6px;
+    left: 10px;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+  }
+
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+  .client-curved-gallery {
+    height: 290px;
+    border-radius: 16px;
+    --card-gap: 9px;
+  }
+
+  .client-curved-gallery .client-logo-card {
+    flex-basis: 170px;
+    width: 170px;
+    height: 165px;
+    padding: 11px 9px;
+  }
+
+  .client-curved-gallery .client-logo-media {
+    width: 145px;
+    height: 72px;
+    flex-basis: 72px;
+  }
+
+  .client-curved-gallery .client-logo-card img {
+    width: 145px;
+    height: 72px;
+  }
+
+  .client-curved-gallery .client-carousel-controls {
+    right: 8px;
+    left: 8px;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .client-curved-gallery .client-logo-card {
+    transition: none;
+  }
+}

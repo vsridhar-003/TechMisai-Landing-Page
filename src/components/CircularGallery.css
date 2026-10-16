@@ -1,0 +1,218 @@
+.clients-stage {
+  height: clamp(380px, 46vw, 540px);
+  margin: clamp(32px, 5vw, 64px) 0 12px;
+}
+
+.clients-stage .client-gallery {
+  min-height: 0;
+}
+
+.circular-gallery {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  min-height: 350px;
+  overflow: hidden;
+  cursor: grab;
+  outline: none;
+  perspective: 1200px;
+  touch-action: pan-y;
+  user-select: none;
+  isolation: isolate;
+  box-sizing: border-box;
+}
+
+.circular-gallery:active,
+.circular-gallery.is-dragging {
+  cursor: grabbing;
+}
+
+.circular-gallery:focus-visible {
+  outline: 2px solid #ff4fa3;
+  outline-offset: -4px;
+}
+
+.circular-gallery::before,
+.circular-gallery::after {
+  content: "";
+  position: absolute;
+  z-index: 200;
+  inset-block: 0;
+  width: clamp(16px, 5vw, 70px);
+  pointer-events: none;
+}
+
+.circular-gallery::before {
+  left: 0;
+  background: linear-gradient(90deg, #fffcf5 5%, rgba(255, 252, 245, 0));
+}
+
+.circular-gallery::after {
+  right: 0;
+  background: linear-gradient(270deg, #fffcf5 5%, rgba(255, 252, 245, 0));
+}
+
+.circular-gallery-track {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.circular-gallery-card {
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  display: flex;
+  width: clamp(175px, 21vw, 240px);
+  height: 205px;
+  margin: -102.5px 0 0 calc(clamp(175px, 21vw, 240px) / -2);
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  box-sizing: border-box;
+  will-change: transform, opacity, filter;
+  transition: filter 0.25s ease;
+}
+
+.circular-gallery-image-frame {
+  display: flex;
+  width: 100%;
+  height: 155px;
+  flex: 0 0 155px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 10px;
+  border: 1px solid rgba(192, 0, 217, 0.12);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow:
+    0 0 0 1px rgba(23, 107, 255, 0.12),
+    0 12px 28px rgba(23, 107, 255, 0.12),
+    0 5px 16px rgba(255, 79, 163, 0.08);
+  box-sizing: border-box;
+}
+
+.circular-gallery-image-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.circular-gallery-label {
+  display: flex;
+  width: 100%;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 6px 4px 0;
+  color: var(--gallery-text, #17132f);
+  font: var(--gallery-font, 700 14px Manrope);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.circular-gallery-hint {
+  position: absolute;
+  z-index: 210;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #747087;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .circular-gallery {
+    height: 320px;
+    min-height: 320px;
+  }
+
+  .circular-gallery-card {
+    top: 44%;
+    width: 180px;
+    height: 190px;
+    margin: -95px 0 0 -90px;
+  }
+
+  .circular-gallery-image-frame {
+    height: 140px;
+    flex-basis: 140px;
+  }
+}
+
+@media (max-width: 600px) {
+  .circular-gallery {
+    height: 275px;
+    min-height: 275px;
+    perspective: 900px;
+  }
+
+  .circular-gallery-card {
+    top: 43%;
+    width: 155px;
+    height: 165px;
+    margin: -82.5px 0 0 -77.5px;
+  }
+
+  .circular-gallery-image-frame {
+    height: 120px;
+    flex-basis: 120px;
+    border-radius: 10px;
+  }
+
+  .circular-gallery-label {
+    min-height: 32px;
+    padding: 5px 3px 0;
+    font-size: 10px;
+  }
+
+  .circular-gallery-hint {
+    bottom: 5px;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+
+  .circular-gallery::before,
+  .circular-gallery::after {
+    width: 18px;
+  }
+}
+
+@media (max-width: 380px) {
+  .circular-gallery {
+    height: 250px;
+    min-height: 250px;
+  }
+
+  .circular-gallery-card {
+    width: 140px;
+    height: 150px;
+    margin: -75px 0 0 -70px;
+  }
+
+  .circular-gallery-image-frame {
+    height: 108px;
+    flex-basis: 108px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .circular-gallery-card {
+    transition: none;
+  }
+}

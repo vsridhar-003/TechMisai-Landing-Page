@@ -1,0 +1,1825 @@
+import React, { useEffect, useState } from "react";
+import { createRoot } from "react-dom/client";
+
+import techmisaiLogo from "./assets/techmisai-logo.png";
+import CircularGallery from "./components/CircularGallery.jsx";
+
+import rmAuditsLogo from "./assets/clients/rm-audits.png";
+import daasyeLogo from "./assets/clients/daasye.png";
+import superStarExportsLogo from "./assets/clients/super-star-exports.png";
+import saravanasHotelLogo from "./assets/clients/saravanas-hotel.png";
+import sriSvCateringLogo from "./assets/clients/sri-sv-catering.png";
+import kaniMinesLogo from "./assets/clients/kani-mines.png";
+import elevenHolidaysLogo from "./assets/clients/eleven-holidays.png.jpeg";
+
+import {
+  ArrowRight,
+  Menu,
+  X,
+  Sparkles,
+  Code2,
+  Cloud,
+  PenTool,
+  Rocket,
+  Users,
+  Layers3,
+  BarChart3,
+  Building2,
+  Smartphone,
+  Send,
+  ChevronDown,
+  Star,
+  Quote,
+  ExternalLink,
+} from "lucide-react";
+
+import "./styles.css";
+
+/* =========================================================
+   DATA
+========================================================= */
+
+const solutions = [
+  [
+    "AI Solutions",
+    "Intelligent AI systems designed around real business needs.",
+    Sparkles,
+  ],
+  [
+    "Product Engineering",
+    "Scalable digital products built with modern technology.",
+    Code2,
+  ],
+  [
+    "Automation & Integration",
+    "Connect workflows and eliminate repetitive operations.",
+    Cloud,
+  ],
+  [
+    "UI/UX & Digital Experience",
+    "Beautiful, intuitive experiences designed for modern users.",
+    PenTool,
+  ],
+];
+
+const products = [
+  [
+    "Misai AI",
+    "AI PLATFORM",
+    "Intelligent AI experiences that help businesses automate tasks, understand data and make smarter decisions.",
+    Sparkles,
+  ],
+  [
+    "Misai Platform",
+    "DIGITAL PLATFORM",
+    "A connected digital platform for managing workflows, teams, operations and customer experiences.",
+    Layers3,
+  ],
+  [
+    "Misai Analytics",
+    "ANALYTICS",
+    "Transform complex business data into clear insights with intelligent dashboards and real-time analytics.",
+    BarChart3,
+  ],
+  [
+    "Misai Studio",
+    "AUTOMATION",
+    "Build, connect and automate digital workflows from one flexible and scalable workspace.",
+    Rocket,
+  ],
+];
+
+const services = [
+  [
+    "AI & Automation",
+    "Streamline operations with intelligent automation.",
+    Sparkles,
+  ],
+  [
+    "Web Development",
+    "Modern, scalable and high-performance web apps.",
+    Code2,
+  ],
+  [
+    "Mobile Applications",
+    "Native and cross-platform mobile experiences.",
+    Smartphone,
+  ],
+  [
+    "Cloud Solutions",
+    "Secure, scalable and flexible cloud infrastructure.",
+    Cloud,
+  ],
+  [
+    "UI/UX Design",
+    "User-centered designs that inspire and engage.",
+    PenTool,
+  ],
+  [
+    "Data & Analytics",
+    "Turn data into actionable business insights.",
+    BarChart3,
+  ],
+];
+
+const stats = [
+  ["50+", "Projects Delivered", Rocket],
+  ["98%", "Client Satisfaction", Users],
+  ["15+", "Technologies", Layers3],
+  ["25+", "Business Solutions", BarChart3],
+  ["10+", "Industries", Building2],
+];
+
+/* =========================================================
+   CLIENTS
+   Replace these sample details with real client details
+   when available.
+========================================================= */
+
+const clients = [
+  {
+    
+    title: "RM Audits",
+    type: "Audit • Compliance • Advisory",
+    logo: rmAuditsLogo,
+  },
+
+  {
+    
+    title: "Super Star Exports",
+    type: "Global Trade • Exports",
+    logo: superStarExportsLogo,
+  },
+
+  {
+    
+    title: "Saravanas Hotel",
+    type: "Restaurant",
+    logo: saravanasHotelLogo,
+  },
+
+  {
+    
+    title: "Sri SV Catering",
+    type: "Catering",
+    logo: sriSvCateringLogo,
+  },
+
+  {
+   
+    title: "Kani Mines",
+    type: "Mining",
+    logo: kaniMinesLogo,
+  },
+
+  {
+    
+    title: "Eleven Holidays",
+    type: "Travel • Holidays",
+    logo: elevenHolidaysLogo,
+  },
+
+  {
+    
+    title: "DaaSye",
+    type: "Distribution",
+    logo: daasyeLogo,
+  },
+];
+
+const clientCarouselItems = clients.map((client) => ({
+  image: client.logo,
+  alt: client.title,
+  text: client.title,
+}));
+
+/* =========================================================
+   CLIENT REVIEWS
+   Replace sample reviews with real client feedback later.
+========================================================= */
+
+const clientReviews = [
+  {
+    name: "Client Partner",
+    role: "Business & Technology",
+    review:
+      "TechMisai understood the requirement clearly and turned the idea into a clean, modern digital experience. The process was smooth and focused on our actual business needs.",
+  },
+  {
+    name: "Product Partner",
+    role: "Digital Product",
+    review:
+      "The team brought together design, technology and usability really well. The final experience feels modern, responsive and much easier for our users to work with.",
+  },
+  {
+    name: "Business Partner",
+    role: "Operations",
+    review:
+      "What stood out was the focus on solving the actual workflow instead of simply building another application. The result was practical, scalable and easy to understand.",
+  },
+];
+
+/* =========================================================
+   FAQ DATA
+========================================================= */
+
+const faqs = [
+  {
+    question: "What does TechMisai help businesses with?",
+    answer:
+      "TechMisai helps businesses build modern digital products, websites, software platforms, AI-powered solutions, and scalable technology experiences.",
+  },
+  {
+    question: "Can TechMisai build a custom software solution?",
+    answer:
+      "Yes. We create custom digital solutions based on your business requirements, workflows, users, and long-term goals.",
+  },
+  {
+    question: "Do you provide UI/UX design services?",
+    answer:
+      "Yes. We design clean, intuitive, and responsive user experiences with a strong focus on usability, visual consistency, and business goals.",
+  },
+  {
+    question: "Can you improve an existing website or product?",
+    answer:
+      "Absolutely. We can redesign, optimize, modernize, and improve existing websites and digital products to make them faster, cleaner, more responsive, and easier to use.",
+  },
+  {
+    question: "Do you work with startups and growing businesses?",
+    answer:
+      "Yes. Our solutions can be adapted for startups, growing businesses, and established organizations depending on their technology and product needs.",
+  },
+  {
+    question: "How can I get started with TechMisai?",
+    answer:
+      "Simply get in touch with our team and share your idea, requirement, or business challenge. We can then discuss the right solution for your project.",
+  },
+];
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+const navItems = [
+  {
+    label: "Home",
+    target: "home",
+  },
+  {
+    label: "Solutions",
+    target: "solutions",
+  },
+  {
+    label: "Services",
+    target: "services",
+  },
+  {
+    label: "Products",
+    target: "products",
+  },
+  {
+    label: "Clients",
+    target: "clients",
+  },
+  {
+    label: "FAQ",
+    target: "faq",
+  },
+  {
+    label: "Resources",
+    target: "resources",
+  },
+  {
+    label: "Company",
+    target: "company",
+  },
+];
+
+/* =========================================================
+   APP
+========================================================= */
+
+function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+
+  /* FAQ OPEN STATE */
+  const [openFaq, setOpenFaq] = useState(null);
+
+  /* -------------------------------------------------------
+     NAVBAR SCROLL
+  ------------------------------------------------------- */
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 18);
+    };
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  /* -------------------------------------------------------
+     CLOSE MOBILE MENU WHEN SCREEN BECOMES DESKTOP
+  ------------------------------------------------------- */
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 760) {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  /* -------------------------------------------------------
+     PREVENT BODY SCROLL WHEN MOBILE MENU OPEN
+  ------------------------------------------------------- */
+
+  useEffect(() => {
+    if (menuOpen && window.innerWidth <= 760) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  /* -------------------------------------------------------
+     PREMIUM SCROLL REVEAL
+     Replays when elements leave and re-enter the viewport.
+  ------------------------------------------------------- */
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      return;
+    }
+
+    const revealSelector = [
+      ".section .reveal",
+      ".section-head",
+      ".stat",
+      ".client-card",
+      ".review-card",
+      ".reviews-head",
+      ".faq-heading",
+      ".faq-list",
+      ".cta",
+      ".footer-grid",
+      ".footer-bottom",
+    ].join(",");
+
+    const revealElements = document.querySelectorAll(revealSelector);
+
+    revealElements.forEach((element) => {
+      element.classList.add("scroll-reveal");
+    });
+
+    document.documentElement.classList.add("scroll-motion-ready");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          } else {
+            entry.target.classList.remove("is-visible");
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -6% 0px",
+      }
+    );
+
+    revealElements.forEach((element) => observer.observe(element));
+
+    return () => {
+      observer.disconnect();
+      document.documentElement.classList.remove("scroll-motion-ready");
+      revealElements.forEach((element) => {
+        element.classList.remove("scroll-reveal", "is-visible");
+      });
+    };
+  }, []);
+
+  /* -------------------------------------------------------
+     CLOSE MENU
+  ------------------------------------------------------- */
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setOpenDropdown(null);
+  };
+
+  /* -------------------------------------------------------
+     NAVIGATION CLICK
+  ------------------------------------------------------- */
+
+  const handleNavClick = (event, target) => {
+    event.preventDefault();
+
+    setMenuOpen(false);
+
+    const element = document.getElementById(target);
+
+    if (element) {
+      setTimeout(() => {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 50);
+    }
+  };
+
+  /* -------------------------------------------------------
+     LOGO CLICK
+  ------------------------------------------------------- */
+
+  const handleLogoClick = (event) => {
+    event.preventDefault();
+
+    setMenuOpen(false);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <div className="site">
+
+      {/* =====================================================
+          MOBILE MENU BACKDROP
+      ====================================================== */}
+
+      {menuOpen && (
+        <div
+          className="mobile-menu-backdrop"
+          onClick={closeMenu}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* =====================================================
+          NAVBAR
+      ====================================================== */}
+
+      <header
+        className={`navbar ${
+          scrolled ? "navbar--scrolled" : ""
+        } ${menuOpen ? "navbar--menu-open" : ""}`}
+      >
+
+        {/* LOGO */}
+
+        <a
+          className="brand"
+          href="#home"
+          onClick={handleLogoClick}
+          aria-label="TechMisai Home"
+        >
+          <img
+            src={techmisaiLogo}
+            alt="TechMisai"
+            className="brand-logo"
+          />
+        </a>
+
+        {/* NAV LINKS */}
+
+        <nav
+          id="mobile-navigation"
+          className={`nav-links ${
+            menuOpen ? "nav-links--open" : ""
+          }`}
+          aria-label="Main navigation"
+        >
+
+          {navItems.map((item) => {
+            const hasDropdown =
+              item.label === "Products" || item.label === "Services";
+
+            if (!hasDropdown) {
+              return (
+                <a
+                  key={item.target}
+                  href={`#${item.target}`}
+                  className="nav-link"
+                  onClick={(event) =>
+                    handleNavClick(event, item.target)
+                  }
+                >
+                  <span>{item.label}</span>
+                </a>
+              );
+            }
+
+            const items = item.label === "Products" ? products : services;
+            const isOpen = openDropdown === item.label;
+
+            return (
+              <div
+                key={item.target}
+                className={`nav-dropdown ${isOpen ? "nav-dropdown--open" : ""}`}
+                onMouseEnter={() => {
+                  if (window.innerWidth > 760) setOpenDropdown(item.label);
+                }}
+                onMouseLeave={() => {
+                  if (window.innerWidth > 760) setOpenDropdown(null);
+                }}
+              >
+                <button
+                  type="button"
+                  className="nav-link nav-dropdown-trigger"
+                  aria-expanded={isOpen}
+                  onClick={() =>
+                    setOpenDropdown((current) =>
+                      current === item.label ? null : item.label
+                    )
+                  }
+                >
+                  <span>{item.label}</span>
+                  <ChevronDown size={12} aria-hidden="true" />
+                </button>
+
+                <div className="nav-dropdown-menu">
+                  {items.map(([title, subtitle]) => (
+                    <a
+                      key={title}
+                      href={`#${item.target}`}
+                      className="nav-dropdown-item"
+                      onClick={(event) => {
+                        handleNavClick(event, item.target);
+                        setOpenDropdown(null);
+                      }}
+                    >
+                      <strong>{title}</strong>
+                      <span>{subtitle}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+
+        </nav>
+
+        {/* NAV ACTIONS */}
+
+        <div className="nav-actions">
+
+          <a
+            className="btn btn-primary btn-small"
+            href="#contact"
+            onClick={(event) =>
+              handleNavClick(event, "contact")
+            }
+          >
+            Get Started
+            <ArrowRight size={15} />
+          </a>
+
+          <button
+            type="button"
+            className="menu-btn"
+            aria-label={
+              menuOpen
+                ? "Close navigation menu"
+                : "Open navigation menu"
+            }
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
+            onClick={() =>
+              setMenuOpen((previous) => !previous)
+            }
+          >
+            {menuOpen ? (
+              <X
+                size={21}
+                strokeWidth={2.2}
+              />
+            ) : (
+              <Menu
+                size={21}
+                strokeWidth={2.2}
+              />
+            )}
+          </button>
+
+        </div>
+
+      </header>
+
+      {/* =====================================================
+          MAIN
+      ====================================================== */}
+
+      <main>
+
+        {/* ===================================================
+            HERO
+        ==================================================== */}
+
+        <section
+          id="home"
+          className="hero"
+        >
+
+          <div
+            className="hero-art"
+            aria-hidden="true"
+          />
+
+          <div className="container hero-content reveal">
+
+            <div className="hero-copy">
+
+              <div className="eyebrow">
+                AI <span>•</span> DESIGN <span>•</span> TECHNOLOGY
+              </div>
+
+              <h1>
+                Build smarter.
+                <br />
+                Create <em>what’s next.</em>
+              </h1>
+
+              <p>
+                TechMisai transforms ideas into intelligent
+                digital experiences, products and solutions
+                built for the future.
+              </p>
+
+              <div className="hero-actions">
+
+                <a
+                  className="btn btn-primary"
+                  href="#solutions"
+                  onClick={(event) =>
+                    handleNavClick(event, "solutions")
+                  }
+                >
+                  Explore Solutions
+                  <ArrowRight size={17} />
+                </a>
+
+                <a
+                  className="btn btn-outline"
+                  href="#contact"
+                  onClick={(event) =>
+                    handleNavClick(event, "contact")
+                  }
+                >
+                  Let’s Talk
+                </a>
+
+              </div>
+
+              <div className="trust-line">
+
+                <span>
+                  Trusted by innovative teams worldwide
+                </span>
+
+                <div className="trust-names">
+                  <b>NovaTech</b>
+                  <b>BrightPath</b>
+                  <b>Skyline</b>
+                  <b>Everwell</b>
+                  <b>PixelForge</b>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* ===================================================
+            SOLUTIONS
+        ==================================================== */}
+
+        <section
+          id="solutions"
+          className="section solutions"
+        >
+
+          <div className="container">
+
+            <div className="section-head reveal">
+
+              <div>
+
+                <div className="eyebrow">
+                  OUR SOLUTIONS
+                </div>
+
+                <h2>
+                  Technology built
+                  <br />
+                  for <em>what’s next.</em>
+                </h2>
+
+              </div>
+
+              <div className="section-intro">
+
+                <p>
+                  We combine strategy, technology, and
+                  creativity to deliver intelligent solutions
+                  that help businesses grow, adapt and stay
+                  ahead.
+                </p>
+
+                <a
+                  href="#services"
+                  onClick={(event) =>
+                    handleNavClick(event, "services")
+                  }
+                >
+                  View all solutions
+                  <ArrowRight size={15} />
+                </a>
+
+              </div>
+
+            </div>
+
+            <div className="card-grid four">
+
+              {solutions.map(
+                ([title, text, Icon]) => (
+                  <article
+                    className="glass-card reveal"
+                    key={title}
+                  >
+
+                    <div className="icon-box">
+                      <Icon size={20} />
+                    </div>
+
+                    <h3>{title}</h3>
+
+                    <p>{text}</p>
+
+                    <a
+                      href="#contact"
+                      className="card-arrow"
+                      aria-label={`Learn more about ${title}`}
+                      onClick={(event) =>
+                        handleNavClick(event, "contact")
+                      }
+                    >
+                      <ArrowRight size={17} />
+                    </a>
+
+                  </article>
+                )
+              )}
+
+            </div>
+
+            {/* STATS */}
+
+            <div className="stats-bar reveal">
+
+              {stats.map(
+                ([value, label, Icon]) => (
+                  <div
+                    className="stat"
+                    key={label}
+                  >
+
+                    <div className="stat-icon">
+                      <Icon size={20} />
+                    </div>
+
+                    <div>
+                      <strong>{value}</strong>
+                      <span>{label}</span>
+                    </div>
+
+                  </div>
+                )
+              )}
+
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* ===================================================
+            PRODUCTS
+        ==================================================== */}
+
+        <section
+          id="products"
+          className="section products"
+        >
+
+          <div className="container">
+
+            <div className="section-head products-head reveal">
+
+              <div>
+
+                <div className="eyebrow">
+                  OUR PRODUCTS
+                </div>
+
+                <h2>
+                  Digital products built
+                  <br />
+                  for <em>real impact.</em>
+                </h2>
+
+              </div>
+
+              <div className="section-intro">
+
+                <p>
+                  Powerful products designed to help teams
+                  automate, understand and grow their
+                  businesses faster.
+                </p>
+
+              </div>
+
+            </div>
+
+            <div className="product-grid">
+
+              {products.map(
+                ([title, label, text, Icon], index) => (
+                  <article
+                    className={`product-card ${
+                      index === 0
+                        ? "product-card-featured"
+                        : ""
+                    } product-reveal`}
+                    key={title}
+                  >
+
+                    <div className="product-card-top">
+
+                      <div className="product-icon">
+                        <Icon size={22} />
+                      </div>
+
+                      <span className="product-number">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+
+                    </div>
+
+                    <div className="product-content">
+
+                      <span className="product-label">
+                        {label}
+                      </span>
+
+                      <h3>
+                        {title}
+                      </h3>
+
+                      <p>
+                        {text}
+                      </p>
+
+                    </div>
+
+                    <a
+                      href="#contact"
+                      className="product-link"
+                      onClick={(event) =>
+                        handleNavClick(event, "contact")
+                      }
+                    >
+                      Explore product
+                      <ArrowRight size={16} />
+                    </a>
+
+                  </article>
+                )
+              )}
+
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* ===================================================
+            CLIENTS
+        ==================================================== */}
+
+        <section
+          id="clients"
+          className="section clients-section clients-scroll-driven"
+        >
+
+          <div className="container">
+
+            <div className="section-head clients-head reveal">
+
+              <div>
+
+                <div className="eyebrow">
+                  OUR CLIENTS
+                </div>
+
+                <h2>
+                  Partnerships built
+                  <br />
+                  for <em>long-term impact.</em>
+                </h2>
+
+              </div>
+
+              <div className="section-intro">
+
+                <p>
+                  We work closely with businesses to turn
+                  ideas, challenges and opportunities into
+                  meaningful digital products.
+                </p>
+
+              </div>
+
+            </div>
+
+            <div className="client-carousel-wrap client-circular-gallery-wrap reveal">
+              <div className="client-circular-gallery-stage">
+                <CircularGallery
+                  items={clientCarouselItems}
+                  bend={3}
+                  textColor="#ffffff"
+                  borderRadius={0.05}
+                  scrollEase={0.02}
+                  fontUrl="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap"
+                  font="bold 30px Orbitron"
+                  className="client-circular-gallery"
+                />
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* ===================================================
+            CLIENT REVIEWS
+        ==================================================== */}
+
+        <section
+          id="client-reviews"
+          className="section reviews-section"
+        >
+
+          <div className="container">
+
+            <div className="reviews-head reveal">
+
+              <div>
+
+                <div className="eyebrow">
+                  CLIENT REVIEWS
+                </div>
+
+                <h2>
+                  What our
+                  <br />
+                  <em>partners say.</em>
+                </h2>
+
+              </div>
+
+              <p>
+                Real collaboration starts with understanding
+                the people, goals and challenges behind every
+                project.
+              </p>
+
+            </div>
+
+            <div className="reviews-grid">
+
+              {clientReviews.map(
+                (review, index) => (
+                  <article
+                    className="review-card reveal"
+                    key={review.name}
+                  >
+
+                    <div className="review-top">
+
+                      <div className="quote-icon">
+                        <Quote size={20} />
+                      </div>
+
+                      <div className="review-stars">
+
+                        {[1, 2, 3, 4, 5].map(
+                          (star) => (
+                            <Star
+                              key={star}
+                              size={14}
+                              fill="currentColor"
+                            />
+                          )
+                        )}
+
+                      </div>
+
+                    </div>
+
+                    <p className="review-text">
+                      “{review.review}”
+                    </p>
+
+                    <div className="review-author">
+
+                      <div className="review-avatar">
+                        {String(index + 1).padStart(2, "0")}
+                      </div>
+
+                      <div>
+
+                        <strong>
+                          {review.name}
+                        </strong>
+
+                        <span>
+                          {review.role}
+                        </span>
+
+                      </div>
+
+                    </div>
+
+                  </article>
+                )
+              )}
+
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* ===================================================
+            FAQ
+        ==================================================== */}
+
+        <section
+          id="faq"
+          className="faq-section"
+        >
+
+          <div className="faq-inner">
+
+            {/* FAQ HEADING */}
+
+            <div className="faq-heading">
+
+              <span className="section-kicker">
+                FAQ
+              </span>
+
+              <h2>
+                Questions?
+                <br />
+                <span>We've got answers.</span>
+              </h2>
+
+              <p>
+                Everything you need to know about working
+                with TechMisai and building your next
+                digital product.
+              </p>
+
+            </div>
+
+            {/* FAQ LIST */}
+
+            <div className="faq-list">
+
+              {faqs.map((faq, index) => {
+
+                const isOpen = openFaq === index;
+
+                return (
+                  <div
+                    className={`faq-item ${
+                      isOpen ? "faq-open" : ""
+                    }`}
+                    key={faq.question}
+                  >
+
+                    <button
+                      type="button"
+                      className="faq-question"
+                      onClick={() =>
+                        setOpenFaq(
+                          isOpen ? null : index
+                        )
+                      }
+                      aria-expanded={isOpen}
+                    >
+
+                      <span>
+
+                        <small>
+                          {String(index + 1).padStart(2, "0")}
+                        </small>
+
+                        {faq.question}
+
+                      </span>
+
+                      <span className="faq-plus">
+                        {isOpen ? "−" : "+"}
+                      </span>
+
+                    </button>
+
+                    <div className="faq-answer">
+
+                      <p>
+                        {faq.answer}
+                      </p>
+
+                    </div>
+
+                  </div>
+                );
+              })}
+
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* ===================================================
+            FEATURED CASE STUDY
+        ==================================================== */}
+
+        <section
+          id="case-study"
+          className="section case-study"
+        >
+
+          <div className="container case-grid">
+
+            <div className="case-copy reveal">
+
+              <div className="eyebrow">
+                FEATURED CASE STUDY
+              </div>
+
+              <h2>
+                Transforming ideas into intelligent digital{" "}
+                <em>experiences.</em>
+              </h2>
+
+              <p>
+                We helped a leading retail brand build a
+                scalable platform with AI-driven
+                personalization, resulting in higher
+                engagement and stronger conversions.
+              </p>
+
+              <a
+                className="text-link"
+                href="#contact"
+                onClick={(event) =>
+                  handleNavClick(event, "contact")
+                }
+              >
+                View Case Study
+                <ArrowRight size={16} />
+              </a>
+
+            </div>
+
+            {/* DASHBOARD */}
+
+            <div className="dashboard reveal">
+
+              <div className="dash-top">
+
+                <b>
+                  Tech<span>Misai</span>
+                </b>
+
+                <span>
+                  Search...
+                </span>
+
+                <i>●</i>
+
+              </div>
+
+              <div className="dash-body">
+
+                <aside>
+
+                  <span className="active">
+                    ◈ Dashboard
+                  </span>
+
+                  <span>
+                    Analytics
+                  </span>
+
+                  <span>
+                    Customers
+                  </span>
+
+                  <span>
+                    Products
+                  </span>
+
+                  <span>
+                    Orders
+                  </span>
+
+                  <span>
+                    Settings
+                  </span>
+
+                </aside>
+
+                <div className="dash-main">
+
+                  <div className="mini-grid">
+
+                    <div>
+                      <small>Total Revenue</small>
+                      <b>$248.5K</b>
+                      <i>+12.2%</i>
+                    </div>
+
+                    <div>
+                      <small>Total Users</small>
+                      <b>18,924</b>
+                      <i>+8.3%</i>
+                    </div>
+
+                    <div>
+                      <small>Conversion Rate</small>
+                      <b>4.32%</b>
+                      <i>+11.2%</i>
+                    </div>
+
+                  </div>
+
+                  <div className="chart-card">
+
+                    <div>
+                      <small>
+                        Growth Overview
+                      </small>
+
+                      <strong>
+                        +32%
+                      </strong>
+                    </div>
+
+                    <svg
+                      viewBox="0 0 500 150"
+                      preserveAspectRatio="none"
+                      aria-hidden="true"
+                    >
+
+                      <path
+                        d="M0 120 C45 110 70 115 100 90 S155 105 190 75 S245 110 280 80 S335 95 370 55 S430 70 500 25"
+                        fill="none"
+                        stroke="url(#g)"
+                        strokeWidth="4"
+                      />
+
+                      <defs>
+
+                        <linearGradient
+                          id="g"
+                          x1="0"
+                          x2="1"
+                          y1="0"
+                          y2="0"
+                        >
+
+                          <stop
+                            offset="0"
+                            stopColor="#6c4cff"
+                          />
+
+                          <stop
+                            offset="1"
+                            stopColor="#ef62b6"
+                          />
+
+                        </linearGradient>
+
+                      </defs>
+
+                    </svg>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* ===================================================
+            SERVICES
+        ==================================================== */}
+
+        <section
+          id="services"
+          className="section services"
+        >
+
+          <div className="container">
+
+            <div className="section-head compact reveal">
+
+              <div>
+
+                <div className="eyebrow">
+                  OUR SERVICES
+                </div>
+
+                <h2>
+                  End-to-end technology solutions
+                </h2>
+
+              </div>
+
+              <a
+                href="#contact"
+                onClick={(event) =>
+                  handleNavClick(event, "contact")
+                }
+              >
+                Explore all services
+                <ArrowRight size={15} />
+              </a>
+
+            </div>
+
+            <div className="service-grid">
+
+              {services.map(
+                ([title, text, Icon]) => (
+                  <article
+                    className="service-card reveal"
+                    key={title}
+                  >
+
+                    <div className="service-icon">
+                      <Icon size={18} />
+                    </div>
+
+                    <div>
+
+                      <h3>{title}</h3>
+
+                      <p>{text}</p>
+
+                    </div>
+
+                    <ArrowRight
+                      size={16}
+                      className="service-arrow"
+                    />
+
+                  </article>
+                )
+              )}
+
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* ===================================================
+            COMPANY / CONTACT
+        ==================================================== */}
+
+        <section
+          id="company"
+          className="cta-section"
+        >
+
+          <div className="container">
+
+            <div className="cta reveal">
+
+              <div className="cta-icon">
+                <Send size={23} />
+              </div>
+
+              <div>
+
+                <h2>
+                  Let’s build the future together.
+                </h2>
+
+                <p>
+                  Turn your ideas into impactful digital
+                  products with TechMisai.
+                </p>
+
+              </div>
+
+              <a
+                className="btn btn-white"
+                href="mailto:hello@techmisai.com"
+                onClick={closeMenu}
+              >
+                Talk to an Expert
+                <ArrowRight size={16} />
+              </a>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* CONTACT TARGET */}
+
+        <span
+          id="contact"
+          className="contact-anchor"
+          aria-hidden="true"
+        />
+
+      </main>
+
+      {/* =====================================================
+          FOOTER / RESOURCES
+      ====================================================== */}
+
+      <footer
+        className="footer"
+        id="resources"
+      >
+
+        <div className="container footer-grid">
+
+          {/* BRAND */}
+
+          <div className="footer-brand">
+
+            <a
+              className="brand"
+              href="#home"
+              onClick={handleLogoClick}
+            >
+
+              <img
+                src={techmisaiLogo}
+                alt="TechMisai"
+                className="brand-logo"
+              />
+
+            </a>
+
+            <p>
+              We create intelligent digital solutions that
+              help businesses innovate, grow and make a
+              lasting impact.
+            </p>
+
+            <div className="socials">
+              <span>in</span>
+              <span>𝕏</span>
+              <span>◎</span>
+              <span>▶</span>
+            </div>
+
+          </div>
+
+          {/* SOLUTIONS */}
+
+          <div>
+
+            <h4>Solutions</h4>
+
+            <a
+              href="#solutions"
+              onClick={(event) =>
+                handleNavClick(event, "solutions")
+              }
+            >
+              AI & Automation
+            </a>
+
+            <a
+              href="#solutions"
+              onClick={(event) =>
+                handleNavClick(event, "solutions")
+              }
+            >
+              Product Engineering
+            </a>
+
+            <a
+              href="#solutions"
+              onClick={(event) =>
+                handleNavClick(event, "solutions")
+              }
+            >
+              Cloud Solutions
+            </a>
+
+            <a
+              href="#solutions"
+              onClick={(event) =>
+                handleNavClick(event, "solutions")
+              }
+            >
+              UI/UX Design
+            </a>
+
+            <a
+              href="#solutions"
+              onClick={(event) =>
+                handleNavClick(event, "solutions")
+              }
+            >
+              Data & Analytics
+            </a>
+
+          </div>
+
+          {/* PRODUCTS */}
+
+          <div>
+
+            <h4>Products</h4>
+
+            <a
+              href="#products"
+              onClick={(event) =>
+                handleNavClick(event, "products")
+              }
+            >
+              Misai AI
+            </a>
+
+            <a
+              href="#products"
+              onClick={(event) =>
+                handleNavClick(event, "products")
+              }
+            >
+              Misai Platform
+            </a>
+
+            <a
+              href="#products"
+              onClick={(event) =>
+                handleNavClick(event, "products")
+              }
+            >
+              Misai Analytics
+            </a>
+
+            <a
+              href="#products"
+              onClick={(event) =>
+                handleNavClick(event, "products")
+              }
+            >
+              Misai Studio
+            </a>
+
+          </div>
+
+          {/* SERVICES */}
+
+          <div>
+
+            <h4>Services</h4>
+
+            <a
+              href="#services"
+              onClick={(event) =>
+                handleNavClick(event, "services")
+              }
+            >
+              Web Development
+            </a>
+
+            <a
+              href="#services"
+              onClick={(event) =>
+                handleNavClick(event, "services")
+              }
+            >
+              Mobile Apps
+            </a>
+
+            <a
+              href="#services"
+              onClick={(event) =>
+                handleNavClick(event, "services")
+              }
+            >
+              Cloud & DevOps
+            </a>
+
+            <a
+              href="#services"
+              onClick={(event) =>
+                handleNavClick(event, "services")
+              }
+            >
+              UI/UX Design
+            </a>
+
+            <a
+              href="#services"
+              onClick={(event) =>
+                handleNavClick(event, "services")
+              }
+            >
+              Consulting
+            </a>
+
+          </div>
+
+          {/* RESOURCES */}
+
+          <div>
+
+            <h4>Resources</h4>
+
+            <a
+              href="#resources"
+              onClick={(event) =>
+                handleNavClick(event, "resources")
+              }
+            >
+              Blog
+            </a>
+
+            <a
+              href="#case-study"
+              onClick={(event) =>
+                handleNavClick(event, "case-study")
+              }
+            >
+              Case Studies
+            </a>
+
+            <a
+              href="#resources"
+              onClick={(event) =>
+                handleNavClick(event, "resources")
+              }
+            >
+              Documentation
+            </a>
+
+            <a
+              href="#resources"
+              onClick={(event) =>
+                handleNavClick(event, "resources")
+              }
+            >
+              Guides
+            </a>
+
+            <a
+              href="#faq"
+              onClick={(event) =>
+                handleNavClick(event, "faq")
+              }
+            >
+              Help Center
+            </a>
+
+          </div>
+
+          {/* COMPANY */}
+
+          <div>
+
+            <h4>Company</h4>
+
+            <a
+              href="#company"
+              onClick={(event) =>
+                handleNavClick(event, "company")
+              }
+            >
+              About Us
+            </a>
+
+            <a
+              href="#company"
+              onClick={(event) =>
+                handleNavClick(event, "company")
+              }
+            >
+              Careers
+            </a>
+
+            <a
+              href="#company"
+              onClick={(event) =>
+                handleNavClick(event, "company")
+              }
+            >
+              News
+            </a>
+
+            <a
+              href="#clients"
+              onClick={(event) =>
+                handleNavClick(event, "clients")
+              }
+            >
+              Clients
+            </a>
+
+            <a
+              href="#contact"
+              onClick={(event) =>
+                handleNavClick(event, "contact")
+              }
+            >
+              Contact
+            </a>
+
+          </div>
+
+        </div>
+
+        {/* FOOTER BOTTOM */}
+
+        <div className="container footer-bottom">
+
+          <span>
+            © 2026 TechMisai. All rights reserved.
+          </span>
+
+          <span>
+            Privacy Policy &nbsp; Terms of Service &nbsp;
+            Cookie Policy
+          </span>
+
+        </div>
+
+      </footer>
+
+    </div>
+  );
+}
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+createRoot(
+  document.getElementById("root")
+).render(
+  <App />
+);
