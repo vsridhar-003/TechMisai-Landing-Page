@@ -92,9 +92,9 @@ export const products = [
   },
   {
     id: "platform",
-    title: "Temi Cour",
-    label: "Courier Management System",
-    text: "Manage courier operations efficiently with shipment tracking, delivery assignments, warehouse management, and real-time delivery status updates in one centralized platform.",
+    title: "Temi",
+    label: "Logistics Management System",
+    text: "Manage Logistics operations efficiently with shipment tracking, delivery assignments, warehouse management, and real-time delivery status updates in one centralized platform.",
   },
   {
     id: "analytics",
