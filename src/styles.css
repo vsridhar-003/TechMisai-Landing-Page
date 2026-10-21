@@ -900,10 +900,10 @@ ul, ol {
 .pcard-tilt {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
   align-items: stretch;
   gap: clamp(20px, 3vw, 40px);
-  min-height: 600px;
+  min-height: 0;
   padding: clamp(22px, 3vw, 38px);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1753,7 +1753,7 @@ ul, ol {
 @media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
 
   .products.has-pin {
-    --card-w: min(56vw, 720px);
+    --card-w: min(70vw, 960px);
   }
 
   .products.has-pin .pstage {
@@ -1776,19 +1776,23 @@ ul, ol {
   }
 
   .products.has-pin .pcard-tilt {
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-items: center;
     gap: 16px 24px;
-    height: min(54vh, 390px);
-    min-height: 320px;
-    padding: 22px;
+    height: min(62vh, 500px);
+    min-height: 360px;
+    padding: 24px;
     border-radius: 22px;
   }
 
   .products.has-pin .pcard-media {
     grid-column: 1;
     grid-row: 1 / 3;
-    aspect-ratio: 4 / 5;
+    align-self: center;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
     border-radius: 16px;
   }
 
@@ -1843,10 +1847,16 @@ ul, ol {
   }
 
   .products.has-pin .pcard-tilt {
-    height: min(48vh, 340px);
-    min-height: 280px;
+    height: min(52vh, 390px);
+    min-height: 300px;
     padding: 18px;
     gap: 12px 18px;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  }
+
+  .products.has-pin .pcard-media {
+    aspect-ratio: 16 / 9;
+    align-self: center;
   }
 
   .products.has-pin .pcard-title {
