@@ -98,9 +98,9 @@ export const products = [
   },
   {
     id: "analytics",
-    title: "Misai Analytics",
-    label: "Analytics",
-    text: "Transform complex business data into clear insights with intelligent dashboards and real-time analytics.",
+    title: "Kirana",
+    label: "Retail management system",
+    text: "A smart retail management platform designed to transform complex business data into clear insights, manage inventory, track daily sales, and improve overall shop efficiency through intelligent dashboards and real-time analytics.",
   },
   {
     id: "studio",
