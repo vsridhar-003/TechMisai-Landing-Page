@@ -96,7 +96,7 @@ export const products = [
     label: "Logistics Management System",
     text: "Manage Logistics operations efficiently with shipment tracking, delivery assignments, warehouse management, and real-time delivery status updates in one centralized platform.",
   },
-  {
+ {
     id: "analytics",
     title: "Kirana",
     label: "Retail management system",
