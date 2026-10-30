@@ -4,6 +4,7 @@ const VIDEOS = {
   ai: "../assets/misai-ai-video.mp4",
   platform: "../assets/misai-platform-video.mp4",
   analytics: "../assets/misai-analytics-video.mp4",
+  misai:"../assets/misai-pro-video.mp4",
   studio: "../assets/misai-studio-video.mp4",
 };
 
