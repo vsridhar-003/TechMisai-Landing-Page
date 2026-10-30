@@ -11,6 +11,7 @@ import SplitText from "./SplitText.jsx";
 import misaiAiVideo from "../assets/misai-ai-video.mp4";
 import misaiPlatformVideo from "../assets/misai-platform-video.mp4";
 import misaiAnalyticsVideo from "../assets/misai-analytics-video.mp4";
+import misaiProVideo from "../assets/misai-pro-video.mp4";
 import misaiStudioVideo from "../assets/misai-studio-video.mp4";
 
 const pad = (n) => String(n).padStart(2, "0");
@@ -20,6 +21,7 @@ const PRODUCT_VIDEOS = {
   ai: misaiAiVideo,
   platform: misaiPlatformVideo,
   analytics: misaiAnalyticsVideo,
+  misai: misaiProVideo,
   studio: misaiStudioVideo,
 };
 
