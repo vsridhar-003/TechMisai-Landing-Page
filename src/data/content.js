@@ -96,17 +96,24 @@ export const products = [
     label: "Logistics Management System",
     text: "Manage Logistics operations efficiently with shipment tracking, delivery assignments, warehouse management, and real-time delivery status updates in one centralized platform.",
   },
- {
+  {
     id: "analytics",
     title: "Kirana",
     label: "Retail management system",
     text: "A smart retail management platform designed to transform complex business data into clear insights, manage inventory, track daily sales, and improve overall shop efficiency through intelligent dashboards and real-time analytics.",
   },
-  {
+  
+   {
     id: "studio",
     title: "Misai Studio",
     label: "Automation",
     text: "Build, connect and automate digital workflows from one flexible and scalable workspace.",
+  },
+  {
+    id: "misai",
+    title: "Misai Pro",
+    label: "Project Management",
+    text: "A smart project management platform designed to build, connect, and automate digital workflows, track team tasks, manage project timelines, and improve overall productivity through intelligent workspaces and real-time collaboration.",
   },
 ];
 
